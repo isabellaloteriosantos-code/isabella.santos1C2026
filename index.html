@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo das Séries - Blog</title>
+    <style>
+        /* Configurações Gerais e Cores */
+        :root {
+            --rosa-principal: #ffb7c5;
+            --rosa-claro: #ffe5ec;
+            --rosa-destaque: #ff8fab;
+            --preto-suave: #1a1a1a;
+            --branco-fundo: #fdfbf7; /* Off-white aconchegante */
+            --sombra: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--branco-fundo);
+            color: var(--preto-suave);
+        }
+
+        /* Topo / Header */
+        header {
+            background-color: var(--rosa-principal);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px dashed var(--rosa-destaque);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-area h1 {
+            font-size: 2rem;
+            color: var(--preto-suave);
+            font-weight: 800;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--preto-suave);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: white;
+            background-color: var(--preto-suave);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        /* Layout Principal (Grid) */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 40px;
+        }
+
+        /* Feed de Posts */
+        .feed-posts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--sombra);
+            border: 1px solid var(--rosa-claro);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 143, 171, 0.2);
+        }
+
+        .post-header {
+            background-color: var(--preto-suave);
+            color: white;
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .post-header .tags {
+            color: var(--rosa-principal);
+            font-weight: bold;
+        }
+
+        .post-body {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .post-thumb {
+            background-color: var(--rosa-claro);
+            border-radius: 12px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 2px dashed var(--rosa-destaque);
+        }
+
+        .post-content h2 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--preto-suave);
+            line-height: 1.3;
+        }
+
+        .post-content p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .read-more {
+            color: var(--rosa-destaque);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Barra Lateral (Sidebar) */
+        sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .widget {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px var(--sombra);
+            border: 1px solid var(--rosa-claro);
+        }
+
+        .widget h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--preto-suave);
+            border-left: 4px solid var(--rosa-destaque);
+            padding-left: 10px;
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--branco-fundo);
+            border: 1px solid var(--rosa-principal);
+            border-radius: 20px;
+            padding: 8px 15px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .lista-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 1.5rem;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag-item {
+            background-color: var(--rosa-claro);
+            color: var(--preto-suave);
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .tag-item:hover {
+            background-color: var(--rosa-principal);
+        }
+
+        /* Rodapé / Footer */
+        footer {
+            background-color: var(--preto-suave);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--rosa-principal);
+            font-weight: bold;
+        }
+
+        /* Responsividade Básica */
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+            .feed-posts { grid-template-columns: 1fr; }
+            header { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <span class="logo-icon">🐱🍿</span>
+            <h1>Mundo das Séries</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#" class="active">Blog</a></li>
+                <li><a href="#">Sobre Mim</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <main class="feed-posts">
+            
+            <article class="post-card">
+                <div class="post-header">
+                    <span>23 de jun de 2026</span>
+                    <span class="tags">Séries, Maratona</span>
+                </div>
+                <div class="post-body">
+                    <div class="post-thumb">🛌🍿</div>
+                    <div class="post-content">
+                        <h2>1. Maratonas Inesquecíveis: Séries para assistir de uma vez só</h2>
+                        <p>Sabe aquele plano de dormir cedo? Esqueça. Existem séries que hackeiam nosso autocontrole...</p>
+                        <a href="#" class="read-more">Leia mais...</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <div class="post-header">
+                    <span>23 de jun de 2026</span>
+                    <span class="tags">Adaptações, Livros</span>
+                </div>
+                <div class="post-body">
+                    <div class="post-thumb">📖🎬</div>
+                    <div class="post-content">
+                        <h2>2. Do Livro para a Tela: As melhores adaptações literárias</h2>
+                        <p>Unir leitores e cinéfilos na mesma sala é um esporte de risco. Mas quando a adaptação acerta...</p>
+                        <a href="#" class="read-more">Leia mais...</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <div class="post-header">
+                    <span>24 de jun de 2026</span>
+                    <span class="tags">Opinião, Finais</span>
+                </div>
+                <div class="post-body">
+                    <div class="post-thumb">📺💥</div>
+                    <div class="post-content">
+                        <h2>3. Grandes Reviravoltas: Finais que dividiram opiniões</h2>
+                        <p>Terminar uma série que você amou por anos é difícil. Principalmente quando o final é polémico...</p>
+                        <a href="#" class="read-more">Leia mais...</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <div class="post-header">
+                    <span>24 de jun de 2026</span>
+                    <span class="tags">Pérolas, Indicações</span>
+                </div>
+                <div class="post-body">
+                    <div class="post-thumb">💎🔍</div>
+                    <div class="post-content">
+                        <h2>4. Pérolas Escondidas: Séries incríveis que quase ninguém conhece</h2>
+                        <p>Enquanto todos olham o topo do catálogo, você acha aquela produção indie escondida maravilhosa...</p>
+                        <a href="#" class="read-more">Leia mais...</a>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+
+        <aside>
+            <div class="widget">
+                <h3>Pesquisa</h3>
+                <div class="search-box">
+                    <input type="text" placeholder="Pesquisar...">
+                    <span>🔍</span>
+                </div>
+            </div>
+
+            <div class="widget">
+                <h3>Minha Lista</h3>
+                <div class="lista-icons">
+                    <span>📚</span>
+                    <span>🎬</span>
+                    <span>🗒️</span>
+                </div>
+            </div>
+
+            <div class="widget">
+                <h3>Populares</h3>
+                <div class="tag-cloud">
+                    <a href="#" class="tag-item">Séries</a>
+                    <a href="#" class="tag-item">Maratona</a>
+                    <a href="#" class="tag-item">Escondidas</a>
+                    <a href="#" class="tag-item">Livros</a>
+                    <a href="#" class="tag-item">Pérolas</a>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>Criado no <span>VS Code</span> | Mundo das Séries 2026</p>
+    </footer>
+
+</body>
+</html>
