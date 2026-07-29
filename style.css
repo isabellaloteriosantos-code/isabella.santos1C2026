@@ -88,13 +88,13 @@ nav ul li a.active {
 }
 
 /* ==========================================================================
-   4. FEED DE POSTS (CARDS) E INTERATIVIDADE
+   4. FEED DE POSTS (CARDS)
    ========================================================================== */
 .feed-posts {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
-    align-items: start; /* Impede que os cards estiquem os vizinhos ao expandir */
+    align-items: start; /* Impede deformação dos cards ao expandir o texto */
 }
 
 .post-card {
@@ -158,28 +158,29 @@ nav ul li a.active {
     line-height: 1.3;
 }
 
-.post-content p {
+.post-content p.resumo {
     font-size: 0.9rem;
     color: #555;
     line-height: 1.4;
 }
 
-/* Estilo do texto expandido */
+/* Caixa do texto completo expandido */
 .texto-completo {
     background-color: var(--rosa-claro);
     padding: 10px;
     border-radius: 8px;
     border-left: 3px solid var(--rosa-destaque);
-    animation: fadeIn 0.4s ease-in-out;
+    font-size: 0.88rem;
+    color: var(--preto-suave);
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Animação suave para revelar o texto */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
+    from { opacity: 0; transform: translateY(-4px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Botão "Leia mais..." interativo */
 .read-more {
     display: inline-block;
     margin-top: 12px;
@@ -240,7 +241,7 @@ sidebar, aside {
     color: var(--preto-suave);
 }
 
-/* Ícones interativos da lista */
+/* Ícones da lista */
 .lista-icons {
     display: flex;
     gap: 15px;
@@ -248,7 +249,6 @@ sidebar, aside {
 }
 
 .lista-icons span {
-    cursor: pointer;
     transition: transform 0.2s;
 }
 
@@ -256,7 +256,7 @@ sidebar, aside {
     transform: scale(1.25);
 }
 
-/* Tags clicáveis */
+/* Nuvem de Tags */
 .tag-cloud {
     display: flex;
     flex-wrap: wrap;

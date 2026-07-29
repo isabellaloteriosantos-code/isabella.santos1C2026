@@ -15,10 +15,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">Início</a></li>
-                <li><a href="#" class="active">Blog</a></li>
-                <li><a href="#">Sobre Mim</a></li>
-                <li><a href="#">Contato</a></li>
+                <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="#feed-posts">Blog</a></li>
+                <li><a href="javascript:void(0)" onclick="alert('Página Sobre Mim em breve!')">Sobre Mim</a></li>
+                <li><a href="javascript:void(0)" onclick="alert('Entre em contato pelo email: contato@mundodasseries.com')">Contato</a></li>
             </ul>
         </nav>
     </header>
@@ -105,7 +105,7 @@
             <div class="widget">
                 <h3>Pesquisa</h3>
                 <div class="search-box">
-                    <input type="text" id="input-busca" placeholder="Pesquisar série ou tema..." onkeyup="filtrarPosts()">
+                    <input type="text" id="input-busca" placeholder="Pesquisar..." onkeyup="filtrarPosts()">
                     <span>🔍</span>
                 </div>
             </div>
@@ -113,9 +113,9 @@
             <div class="widget">
                 <h3>Minha Lista</h3>
                 <div class="lista-icons">
-                    <span title="Livros Salvos" onclick="alert('Sua lista de Livros Salvos está vazia!')">📚</span>
-                    <span title="Séries Favoritas" onclick="alert('Suas Séries Favoritas foram carregadas!')">🎬</span>
-                    <span title="Anotações" onclick="alert('Abrindo bloco de notas...')">🗒️</span>
+                    <span title="Livros Salvos" onclick="alert('Sua lista de Livros Salvos está vazia!')" style="cursor: pointer;">📚</span>
+                    <span title="Séries Favoritas" onclick="alert('Suas Séries Favoritas foram carregadas!')" style="cursor: pointer;">🎬</span>
+                    <span title="Anotações" onclick="alert('Abrindo bloco de notas...')" style="cursor: pointer;">🗒️</span>
                 </div>
             </div>
 
@@ -126,7 +126,7 @@
                     <a href="javascript:void(0)" class="tag-item" onclick="filtrarPorTag('Maratona')">Maratona</a>
                     <a href="javascript:void(0)" class="tag-item" onclick="filtrarPorTag('Livros')">Livros</a>
                     <a href="javascript:void(0)" class="tag-item" onclick="filtrarPorTag('Pérolas')">Pérolas</a>
-                    <a href="javascript:void(0)" class="tag-item" onclick="filtrarPorTag('')">Mostrar Todos</a>
+                    <a href="javascript:void(0)" class="tag-item" onclick="filtrarPorTag('')">Todos</a>
                 </div>
             </div>
         </aside>
@@ -138,12 +138,12 @@
     </footer>
 
     <script>
-        // Função para Expandir/Encolher o texto ao clicar em "Leia mais..."
+        // Função para Expandir e Mostrar o texto do "Leia mais..."
         function alternarLeitura(botao) {
-            const card = botao.parentElement;
-            const textoCompleto = card.querySelector('.texto-completo');
+            const containerTexto = botao.parentElement;
+            const textoCompleto = containerTexto.querySelector('.texto-completo');
             
-            if (textoCompleto.style.display === "none") {
+            if (textoCompleto.style.display === "none" || textoCompleto.style.display === "") {
                 textoCompleto.style.display = "block";
                 botao.innerText = "Leia menos...";
             } else {
@@ -152,7 +152,7 @@
             }
         }
 
-        // Função para Filtrar Posts na busca
+        // Função de Pesquisa no site
         function filtrarPosts() {
             const busca = document.getElementById('input-busca').value.toLowerCase();
             const cards = document.querySelectorAll('.post-card');
@@ -169,7 +169,7 @@
             });
         }
 
-        // Função para filtrar posts pelas Tags Populares
+        // Função para filtrar por Tags
         function filtrarPorTag(tag) {
             document.getElementById('input-busca').value = tag;
             filtrarPosts();
