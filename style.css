@@ -1,313 +1,364 @@
-/* ==========================================================================
-   1. VARIÁVEIS DE CORES E CONFIGURAÇÕES GERAIS
-   ========================================================================== */
-:root {
-    --rosa-principal: #ffb7c5;
-    --rosa-claro: #ffe5ec;
-    --rosa-destaque: #ff8fab;
-    --preto-suave: #1a1a1a;
-    --branco-fundo: #fdfbf7; /* Off-white aconchegante */
-    --sombra: rgba(0, 0, 0, 0.08);
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isabella Santos | Aesthetic Books & Series</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* Reset & Variáveis de Estilo */
+    :root {
+      --bg-color: #fdf6f7;
+      --card-bg: #ffffff;
+      --primary-pink: #f4b6c2;
+      --soft-pink: #fbe3e8;
+      --deep-pink: #d87093;
+      --text-color: #4a3e3d;
+      --accent-border: #f7d6de;
+      --shadow-color: rgba(216, 112, 147, 0.08);
+    }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
 
-body {
-    background-color: var(--branco-fundo);
-    color: var(--preto-suave);
-    -webkit-font-smoothing: antialiased;
-}
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.8;
+      scroll-behavior: smooth;
+    }
 
-/* ==========================================================================
-   2. CABEÇALHO (HEADER) & NAVEGAÇÃO
-   ========================================================================== */
-header {
-    background-color: var(--rosa-principal);
-    padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 4px dashed var(--rosa-destaque);
-}
+    /* Navegação Superior Fixa */
+    header {
+      background-color: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      padding: 1.2rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--accent-border);
+      box-shadow: 0 4px 20px var(--shadow-color);
+    }
 
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 950px;
+      margin: 0 auto;
+    }
 
-.logo-area h1 {
-    font-size: 2rem;
-    color: var(--preto-suave);
-    font-weight: 800;
-}
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--deep-pink);
+      letter-spacing: 0.5px;
+    }
 
-.logo-icon {
-    font-size: 2.5rem;
-}
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 22px;
+    }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
+    }
 
-nav ul li a {
-    text-decoration: none;
-    color: var(--preto-suave);
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    padding: 5px 15px;
-    border-radius: 20px;
-    border: 2px solid transparent;
-}
+    .nav-links a:hover {
+      color: var(--deep-pink);
+    }
 
-nav ul li a:hover, 
-nav ul li a.active {
-    color: white;
-    background-color: var(--preto-suave);
-    border-color: var(--preto-suave);
-}
+    /* Conteúdo Principal */
+    .container {
+      max-width: 850px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
 
-/* ==========================================================================
-   3. ESTRUTURA DE LAYOUT (GRID PRINCIPAL)
-   ========================================================================== */
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 40px;
-}
+    section {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      border-radius: 24px;
+      box-shadow: 0 8px 30px var(--shadow-color);
+      border: 1px solid #fff0f3;
+    }
 
-/* ==========================================================================
-   4. FEED DE POSTS (CARDS)
-   ========================================================================== */
-.feed-posts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    align-items: start; /* Impede deformação dos cards ao expandir o texto */
-}
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      color: var(--deep-pink);
+      display: inline-block;
+      position: relative;
+    }
 
-.post-card {
-    background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px var(--sombra);
-    border: 1px solid var(--rosa-claro);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    h2::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--primary-pink);
+      margin-top: 6px;
+      border-radius: 2px;
+    }
 
-.post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(255, 143, 171, 0.25);
-}
+    /* Caixa de Pesquisa */
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin-top: 1.2rem;
+    }
 
-.post-header {
-    background-color: var(--preto-suave);
-    color: white;
-    padding: 12px 15px;
-    font-size: 0.85rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .search-box input {
+      flex: 1;
+      padding: 12px 20px;
+      border: 1px solid var(--accent-border);
+      border-radius: 30px;
+      font-size: 0.9rem;
+      outline: none;
+      background-color: #fff9fa;
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
 
-.post-header .tags {
-    color: var(--rosa-principal);
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.5px;
-}
+    .search-box input:focus {
+      border-color: var(--deep-pink);
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(244, 182, 194, 0.3);
+    }
 
-.post-body {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 2.2fr;
-    gap: 15px;
-    align-items: start;
-    flex-grow: 1;
-}
+    /* Botões */
+    .btn {
+      background-color: var(--primary-pink);
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(244, 182, 194, 0.4);
+    }
 
-.post-thumb {
-    background-color: var(--rosa-claro);
-    border-radius: 12px;
-    height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.8rem;
-    border: 2px dashed var(--rosa-destaque);
-}
+    .btn:hover {
+      background-color: var(--deep-pink);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(216, 112, 147, 0.3);
+    }
 
-.post-content h2 {
-    font-size: 1.15rem;
-    margin-bottom: 8px;
-    color: var(--preto-suave);
-    line-height: 1.3;
-}
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      margin-top: 1.5rem;
+    }
 
-.post-content p.resumo {
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.4;
-}
+    .card {
+      border: 1px solid var(--accent-border);
+      border-radius: 18px;
+      padding: 1.8rem;
+      background: #fffdfd;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
 
-/* Caixa do texto completo expandido */
-.texto-completo {
-    background-color: var(--rosa-claro);
-    padding: 10px;
-    border-radius: 8px;
-    border-left: 3px solid var(--rosa-destaque);
-    font-size: 0.88rem;
-    color: var(--preto-suave);
-    line-height: 1.4;
-    animation: fadeIn 0.3s ease-in-out;
-}
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(216, 112, 147, 0.12);
+    }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 10px;
+      color: var(--deep-pink);
+      font-size: 1.2rem;
+    }
 
-.read-more {
-    display: inline-block;
-    margin-top: 12px;
-    color: var(--rosa-destaque);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: color 0.2s;
-}
+    .card p {
+      margin-bottom: 20px;
+      color: #726362;
+      font-size: 0.88rem;
+    }
 
-.read-more:hover {
-    color: var(--preto-suave);
-    text-decoration: underline;
-}
+    /* Listas Customizadas */
+    ul {
+      list-style: none;
+      margin-top: 10px;
+    }
 
-/* ==========================================================================
-   5. BARRA LATERAL (SIDEBAR) & WIDGETS
-   ========================================================================== */
-sidebar, aside {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
+    ul li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
 
-.widget {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px var(--sombra);
-    border: 1px solid var(--rosa-claro);
-}
+    ul li::before {
+      content: '✧';
+      position: absolute;
+      left: 5px;
+      top: -1px;
+      color: var(--deep-pink);
+      font-size: 1rem;
+    }
 
-.widget h3 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: var(--preto-suave);
-    border-left: 4px solid var(--rosa-destaque);
-    padding-left: 10px;
-}
+    .list-section {
+      background: #fffcfd;
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 1.2rem;
+      border: 1px dashed var(--primary-pink);
+    }
 
-/* Input de Pesquisa */
-.search-box {
-    display: flex;
-    background: var(--branco-fundo);
-    border: 1px solid var(--rosa-principal);
-    border-radius: 20px;
-    padding: 8px 15px;
-    align-items: center;
-}
+    .list-section h3 {
+      color: var(--deep-pink);
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
 
-.search-box input {
-    border: none;
-    background: transparent;
-    outline: none;
-    width: 100%;
-    font-size: 0.9rem;
-    color: var(--preto-suave);
-}
+    /* Rodapé */
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      background: #ffffff;
+      color: var(--deep-pink);
+      margin-top: 4rem;
+      border-top: 1px solid var(--accent-border);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
 
-/* Ícones da lista */
-.lista-icons {
-    display: flex;
-    gap: 15px;
-    font-size: 1.6rem;
-}
+  <header>
+    <nav>
+      <div class="logo">Isabella Santos ♡</div>
+      <ul class="nav-links">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#populares">Populares</a></li>
+        <li><a href="#minha-lista">Minha Lista</a></li>
+        <li><a href="#sobre">Sobre Mim</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
 
-.lista-icons span {
-    transition: transform 0.2s;
-}
+  <div class="container">
 
-.lista-icons span:hover {
-    transform: scale(1.25);
-}
+    <section id="inicio">
+      <h2>Pesquisar Livros</h2>
+      <p>Busque seus títulos ou autores favoritos:</p>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Digite o nome de um livro...">
+        <button class="btn" onclick="pesquisarLivro()">Pesquisar</button>
+      </div>
+    </section>
 
-/* Nuvem de Tags */
-.tag-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
+    <section id="populares">
+      <h2>Destaques & Maratonas</h2>
+      <div class="cards-grid">
+        
+        <div class="card">
+          <h3>Maratonas Inesquecíveis</h3>
+          <p>As melhores sagas de livros e filmes para maratonar no fim de semana debaixo das cobertas.</p>
+          <a href="https://www.google.com/search?q=melhores+sagas+de+livros+para+maratonar" target="_blank" class="btn">Ler mais</a>
+        </div>
 
-.tag-item {
-    background-color: var(--rosa-claro);
-    color: var(--preto-suave);
-    padding: 6px 12px;
-    border-radius: 15px;
-    font-size: 0.85rem;
-    text-decoration: none;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
+        <div class="card">
+          <h3>Séries para Assistir</h3>
+          <p>Seleção de séries curtas, charmosas e envolventes para maratonar de uma vez só.</p>
+          <a href="https://www.google.com/search?q=series+curtas+para+maratonar" target="_blank" class="btn">Ler mais</a>
+        </div>
 
-.tag-item:hover {
-    background-color: var(--preto-suave);
-    color: white;
-}
+        <div class="card">
+          <h3>Resenhas do Blog</h3>
+          <p>Confira minhas impressões e opiniões sinceras sobre os últimos livros que li.</p>
+          <a href="#sobre" class="btn">Ler mais</a>
+        </div>
 
-/* ==========================================================================
-   6. RODAPÉ (FOOTER)
-   ========================================================================== */
-footer {
-    background-color: var(--preto-suave);
-    color: white;
-    text-align: center;
-    padding: 25px;
-    margin-top: 60px;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-}
+      </div>
+    </section>
 
-footer span {
-    color: var(--rosa-principal);
-    font-weight: bold;
-}
+    <section id="minha-lista">
+      <h2>Minha Lista</h2>
+      
+      <div class="list-section">
+        <h3>🔥 Livros Populares</h3>
+        <ul>
+          <li>É Assim que Acaba — <i>Colleen Hoover</i></li>
+          <li>A Biblioteca da Meia-Noite — <i>Matt Haig</i></li>
+          <li>Os Sete Maridos de Evelyn Hugo — <i>Taylor Jenkins Reid</i></li>
+        </ul>
+      </div>
 
-/* ==========================================================================
-   7. RESPONSIVIDADE
-   ========================================================================== */
-@media (max-width: 950px) {
-    .container { grid-template-columns: 1fr; }
-}
+      <div class="list-section">
+        <h3>✨ Livros do Momento</h3>
+        <ul>
+          <li>Quarta Asa — <i>Rebecca Yarros</i></li>
+          <li>Manual de Assassino para Boas Garotas — <i>Holly Jackson</i></li>
+          <li>Assistente do Vilão — <i>Hannah Nicole Maehrer</i></li>
+        </ul>
+      </div>
+    </section>
 
-@media (max-width: 650px) {
-    header { flex-direction: column; gap: 15px; text-align: center; }
-    .feed-posts { grid-template-columns: 1fr; }
-    .post-body { grid-template-columns: 1fr; text-align: center; }
-    .post-thumb { height: 80px; width: 80px; margin: 0 auto; }
-}
+    <section id="sobre">
+      <h2>Sobre Mim</h2>
+      <p>Olá! Seja bem-vinda(o) ao meu cantinho. Me chamo <strong>Isabella Santos</strong> e sou apaixonada por literatura, café, filmes e séries. Criei este espaço para compartilhar minhas recomendações e opiniões!</p>
+    </section>
+
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>Vamos trocar indicações? Me encontre nas redes sociais ou envie uma mensagem:</p>
+      <ul>
+        <li><strong>E-mail:</strong> contato@isabellasantos.com</li>
+        <li><strong>Instagram:</strong> @isabella.santos</li>
+        <li><strong>Skoob / Goodreads:</strong> Isabella Santos</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Isabella Santos ♡ Feito com carinho.</p>
+  </footer>
+
+  <script>
+    function pesquisarLivro() {
+      const termo = document.getElementById('searchInput').value.trim();
+      if (termo !== "") {
+        const urlBusca = `https://www.google.com/search?q=livro+${encodeURIComponent(termo)}`;
+        window.open(urlBusca, '_blank');
+      } else {
+        alert("Digite o nome de um livro para pesquisar!");
+      }
+    }
+
+    document.getElementById('searchInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        pesquisarLivro();
+      }
+    });
+  </script>
+
+</body>
+</html>
